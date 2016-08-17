@@ -78,7 +78,7 @@ Start by exploring the data at hand.
 ```{r}
 # You can also prepare your dataset in a specific way in the pre exercise code
 
-loan_data <- read.csv("movies <- read.csv("http://assets.datacamp.com/production/1608/loan_data.csv, stringsAsFactors = FALSE)
+loan_data <- read.csv("http://assets.datacamp.com/production/1608/loan_data.csv, stringsAsFactors = FALSE)
 
 ```
 
