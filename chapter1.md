@@ -26,7 +26,7 @@ msg_success <- "Exactly! There seems to be a very bad action movie in the datase
 test_mc(correct = 2, feedback_msgs = c(msg_bad, msg_success, msg_bad, msg_bad))
 ```
 
---- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:3cdca1020f
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:ca4858dfca
 ## Which algorithm to choose?
 
 For classification problems we generally use:
