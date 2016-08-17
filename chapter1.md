@@ -78,7 +78,7 @@ Start by exploring the data at hand.
 ```{r}
 # You can also prepare your dataset in a specific way in the pre exercise code
 
-loan_data <- read.csv("https://raw.githubusercontent.com/gudmhbagde/CHAID-analysis-using-R/master/loan_data.csv")
+loan_data <- read.csv("http://raw.githubusercontent.com/gudmhbagde/CHAID-analysis-using-R/master/loan_data.csv")
 
 ```
 
