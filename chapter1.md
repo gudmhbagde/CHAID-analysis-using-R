@@ -4,30 +4,18 @@ description : We will be using CHAID analysis to classify prospective bank custo
 
 
 --- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:3cdca1020f
-## A really bad movie
+## Categorical or Continuous?
 
-Have a look at the plot that showed up in the viewer to the right. Which type of movie has the worst rating assigned to it?
+For a classification problems like Credit Risk Model, where we want to profile prospective bank customers into 'Defaults' or 'No Defaults'. What is the nature of the Dependent Variable, also known as the Response variable (Y)?
 
 *** =instructions
-- Adventure
-- Action
-- Animation
-- Comedy
+- Continuous
+- Categorical
+- Ratio
+- Ordinal
 
 *** =hint
-Have a look at the plot. Which color does the point with the lowest rating have?
-
-*** =pre_exercise_code
-```{r}
-# The pre exercise code runs code to initialize the user's workspace.
-# You can use it to load packages, initialize datasets and draw a plot in the viewer
-
-movies <- read.csv("http://s3.amazonaws.com/assets.datacamp.com/course/introduction_to_r/movies.csv")
-
-library(ggplot2)
-
-ggplot(movies, aes(x = runtime, y = rating, col = genre)) + geom_point()
-```
+We want to classify the response into one of the two categories: 'Default' or 'No Default'
 
 *** =sct
 ```{r}
@@ -38,61 +26,92 @@ msg_success <- "Exactly! There seems to be a very bad action movie in the datase
 test_mc(correct = 2, feedback_msgs = c(msg_bad, msg_success, msg_bad, msg_bad))
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:4136bb3dab
-## More movies
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:3cdca1020f
+## Which algorithm to choose?
 
-In the previous exercise, you saw a dataset about movies. In this exercise, we'll have a look at yet another dataset about movies!
-
-A dataset with a selection of movies, `movie_selection`, is available in the workspace.
+For classification problems we generally use:
+(a) Logistic Regression Model
+(b) Linear Regression Model
+(c) Decision Trees Model
+(d) K-means Clustering Model
 
 *** =instructions
-- Check out the structure of `movie_selection`.
-- Select movies with a rating of 5 or higher. Assign the result to `good_movies`.
-- Use `plot()` to  plot `good_movies$Run` on the x-axis, `good_movies$Rating` on the y-axis and set `col` to `good_movies$Genre`.
+- (a), (b), and (c)
+- (a), (b), and (d)
+- Only (a) and (c)
+- Only (b) and (d)
 
 *** =hint
-- Use `str()` for the first instruction.
-- For the second instruction, you should use `...[movie_selection$Rating >= 5, ]`.
-- For the plot, use `plot(x = ..., y = ..., col = ...)`.
+Linear Regression model uses a continuous response variable and K-means is generally used for unsupervised machine learning!
+
+*** =sct
+```{r}
+# SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
+
+msg_bad <- "That is not correct!"
+msg_success <- "Exactly! There seems to be a very bad action movie in the dataset."
+test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_success, msg_bad, msg_bad))
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1 key:4136bb3dab
+## Decision Tree: CHAID
+
+In this exercise, you will be working on `loan_data` dataset. This dataset contains data about a hypothetical bank's customers. In this exercise, we'll have a look at this dataset and continue to work with this in the remainder of the exercises.
+
+A dataset is already available in the workspace, so, you can start playing with it already!
+
+Start by exploring the data at hand. 
+
+*** =instructions
+- Print the first 5 rows of `loan_data`.
+- Print the last 5 rows of `loan_data`.
+- Check out the structure of `loan_data`.
+- Use `hist()` function to plot the historgram of `age` variable. Name the graph as "Distribution of Age", the x-axis as "Age" and the y-axis as "Count" 
+
+*** =hint
+- Use `head()` for the first instruction.
+- Use `tail()` for the second instruction.
+- Use `str()` for the third instruction.
+- For the plot, use `loan_data$age`, `main =`, `x-lab =`, `y-lab` respectively as the arguments.
 
 *** =pre_exercise_code
 ```{r}
 # You can also prepare your dataset in a specific way in the pre exercise code
 
-library(MindOnStats)
-data(Movies)
-movie_selection <- Movies[Movies$Genre %in% c("action", "animated", "comedy"),c("Genre", "Rating", "Run")]
+loan_data <- readRDS("")
 
-# Clean up the environment
-rm(Movies)
 ```
 
 *** =sample_code
 ```{r}
-# movie_selection is available in your workspace
-
-# Check out the structure of movie_selection
-
-
-# Select movies that have a rating of 5 or higher: good_movies
+# loan_data is available in your workspace
+# Print the first 5 lines of loan_data to console
 
 
-# Plot Run (i.e. run time) on the x axis, Rating on the y axis, and set the color using Genre
+# Print the last 5 lines of loan_data to console
+
+
+# Look at the structure of loan_data
+
+
+# Plot histogram of age
 
 ```
 
 *** =solution
 ```{r}
-# movie_selection is available in your workspace
+# loan_data is available in your workspace
+# Print the first 5 lines of loan_data to console
+head(loan_data, 5)
 
-# Check out the structure of movie_selection
-str(movie_selection)
+# Print the last 5 lines of loan_data to console
+tail(loan_data, 5)
 
-# Select movies that have a rating of 5 or higher: good_movies
-good_movies <- movie_selection[movie_selection$Rating >= 5, ]
+# Look at the structure of loan_data
+str(loan_data)
 
-# Plot Run (i.e. run time) on the x axis, Rating on the y axis, and set the color using Genre
-plot(good_movies$Run, good_movies$Rating, col = good_movies$Genre)
+# Plot histogram of age
+hist(loan_data$age, main = "Distribution of Age", xlab = "Age", ylab = "Count")
 ```
 
 *** =sct
@@ -103,11 +122,10 @@ test_function("str", args = "object",
               not_called_msg = "You didn't call `str()`!",
               incorrect_msg = "You didn't call `str(object = ...)` with the correct argument, `object`.")
 
-test_object("good_movies")
-
-test_function("plot", args = "x")
-test_function("plot", args = "y")
-test_function("plot", args = "col")
+test_function("hist", args = "x")
+test_function("hist", args = "main")
+test_function("hist", args = "xlab")
+test_function("hist", args = "ylab")
 
 test_error()
 
