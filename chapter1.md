@@ -77,6 +77,7 @@ Start by exploring the data at hand.
 *** =pre_exercise_code
 ```{r}
 # You can also prepare your dataset in a specific way in the pre exercise code
+load(url("http://assets.datacamp.com/production/course_123/my_file.RData"))
 
 loan_data <- read.csv("http://raw.githubusercontent.com/gudmhbagde/CHAID-analysis-using-R/master/loan_data.csv")
 
