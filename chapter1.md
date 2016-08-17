@@ -78,7 +78,7 @@ Start by exploring the data at hand.
 ```{r}
 # You can also prepare your dataset in a specific way in the pre exercise code
 
-loan_data <- readRDS(gzcon(url("http://github.com/gudmhbagde/CHAID-analysis-using-R/raw/master/loan_data_ch1.rds")))
+loan_data <- read.csv("https://raw.githubusercontent.com/gudmhbagde/CHAID-analysis-using-R/master/loan_data.csv")
 
 ```
 
