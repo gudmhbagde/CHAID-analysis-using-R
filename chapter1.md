@@ -147,7 +147,7 @@ test_error()
 
 success_msg("Good work!")
 ```
---- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:3cdca1020f
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:c1bff77acc
 ## Distribution of Age?
 
 Is the `age` variable skewed? If yes, is it right skewed or left skewed?
@@ -169,7 +169,7 @@ msg_success <- "That is correct! Apart from skewness there is also a person with
 test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_bad, msg_succes))
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:4136bb3dab
+--- type:NormalExercise lang:r xp:100 skills:1 key:f220559b36
 ## Data Cleaning (1)
 
 A person with `age` 144 is not possible. Either this age was entered due to a typo or deliberately to highlight it as an outlier. In either case, we can safely remove this observation from our dataset.
