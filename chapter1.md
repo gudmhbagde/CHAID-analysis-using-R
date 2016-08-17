@@ -1,8 +1,7 @@
 ---
-title       : Insert the chapter title here
-description : Insert the chapter description here
-attachments :
-  slides_link : https://s3.amazonaws.com/assets.datacamp.com/course/teach/slides_example.pdf
+title       : CHAID Analysis - Credit Risk Model
+description : We will be using CHAID analysis to classify prospective bank customers into 'Defaults' and 'No Defaults'
+
 
 --- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:3cdca1020f
 ## A really bad movie
