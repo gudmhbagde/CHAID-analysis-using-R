@@ -150,7 +150,7 @@ success_msg("Good work!")
 --- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:c1bff77acc
 ## Distribution of Age?
 
-Is the `age` variable skewed? If yes, is it right skewed or left skewed?
+Is the `age` variable skewed? If yes, is it right skewed or left skewed? The `loan_data` is available in your workspace, if you want to revisit the distribution of `age` variable.
 
 *** =instructions
 - No skewness
@@ -160,13 +160,21 @@ Is the `age` variable skewed? If yes, is it right skewed or left skewed?
 *** =hint
 On which side do we see the tail of the curve extend to?
 
+*** =pre_exercise_code
+```{r}
+# The pre exercise code runs code to initialize the user's workspace.
+# You can use it to load packages, initialize datasets and draw a plot in the viewer
+
+loan_data <- read.csv("http://assets.datacamp.com/production/1608/loan_data.csv", stringsAsFactors = FALSE)
+```
+
 *** =sct
 ```{r}
 # SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
 
 msg_bad <- "That is not correct!"
 msg_success <- "That is correct! Apart from skewness there is also a person with age of 144 years! Do you think this is plausible?"
-test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_bad, msg_succes))
+test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_bad, msg_success))
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:f220559b36
