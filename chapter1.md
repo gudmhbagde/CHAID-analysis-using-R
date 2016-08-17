@@ -49,7 +49,7 @@ Linear Regression model uses a continuous response variable and K-means is gener
 # SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
 
 msg_bad <- "That is not correct!"
-msg_success <- "Exactly! There seems to be a very bad action movie in the dataset."
+msg_success <- "Awesome!."
 test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_success, msg_bad, msg_bad))
 ```
 
@@ -78,7 +78,7 @@ Start by exploring the data at hand.
 ```{r}
 # You can also prepare your dataset in a specific way in the pre exercise code
 
-loan_data <- readRDS("")
+loan_data <- readRDS("https://github.com/gudmhbagde/CHAID-analysis-using-R/blob/master/loan_data_ch1.rds")
 
 ```
 
