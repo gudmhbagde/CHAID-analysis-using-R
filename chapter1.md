@@ -6,7 +6,7 @@ description : We will be using CHAID analysis to classify prospective bank custo
 --- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:3cdca1020f
 ## Categorical or Continuous?
 
-For a classification problems like Credit Risk Model, where we want to profile prospective bank customers into 'Defaults' or 'No Defaults'. What is the nature of the Dependent Variable, also known as the Response variable (Y)?
+For a classification problem like Credit Risk Model, where our objective is to profile prospective bank customers into 'Defaults' or 'No Defaults'. What is the nature of the Dependent Variable, which is also known as the Response variable (Y)?
 
 *** =instructions
 - Continuous
@@ -22,7 +22,7 @@ We want to classify the response into one of the two categories: 'Default' or 'N
 # SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
 
 msg_bad <- "That is not correct!"
-msg_success <- "Exactly! There seems to be a very bad action movie in the dataset."
+msg_success <- "Awesome!"
 test_mc(correct = 2, feedback_msgs = c(msg_bad, msg_success, msg_bad, msg_bad))
 ```
 
@@ -50,7 +50,7 @@ Linear Regression model uses a continuous response variable and K-means is gener
 
 msg_bad <- "That is not correct!"
 msg_success <- "Awesome!."
-test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_success, msg_bad, msg_bad))
+test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_bad, msg_success, msg_bad))
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:4136bb3dab
@@ -122,10 +122,26 @@ test_function("str", args = "object",
               not_called_msg = "You didn't call `str()`!",
               incorrect_msg = "You didn't call `str(object = ...)` with the correct argument, `object`.")
 
-test_function("hist", args = "x")
-test_function("hist", args = "main")
-test_function("hist", args = "xlab")
-test_function("hist", args = "ylab")
+test_function("head", args = "n",
+              not_called_msg = "You didn't call `head()`!",
+              incorrect_msg = "You didn't call `head(.., n = ...)` with the correct argument, `n`.")
+              
+test_function("tail", args = "n",
+              not_called_msg = "You didn't call `tail()`!",
+              incorrect_msg = "You didn't call `tail(.., n = ...)` with the correct argument, `n`.")
+              
+test_function("hist", args = "x",
+              not_called_msg = "You didn't call `hist()`!",
+              incorrect_msg = "You didn't call `hist(x =)` with the correct argument, `x`.")
+              
+test_function("hist", args = "main",
+              incorrect_msg = "You didn't call `hist(.., main =)` with the correct argument, `main`.")
+              
+test_function("hist", args = "xlab",
+              incorrect_msg = "You didn't call `hist(.., xlab =)` with the correct argument, `xlab`.")
+              
+test_function("hist", args = "ylab",
+              incorrect_msg = "You didn't call `hist(.., ylab =)` with the correct argument, `ylab`.")
 
 test_error()
 
