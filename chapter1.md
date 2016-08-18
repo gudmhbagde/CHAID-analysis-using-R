@@ -262,7 +262,7 @@ test_error()
 success_msg("Nice Job! Did you notice from the summary that we have couple more issues with data that need to be fixed? If not, again look carefully at the summary of loan_data_1")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:f220559b36
+--- type:NormalExercise lang:r xp:100 skills:1 key:70d50d4c43
 ## Data Cleaning (2)
 
 Data scientist spend around 3/4th of their time cleaning and tidying the data and spend the rest on analysis. This is an essential skill if you want to be a top Data scientist.
@@ -349,7 +349,7 @@ test_error()
 success_msg("Good Job! Next lets work on the NAs in the other column!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:f220559b36
+--- type:NormalExercise lang:r xp:100 skills:1 key:ad39e12c95
 ## Data Cleaning (3)
 
 If the percentage of NAs in a column are very large then it is advisable to investigate further if NAs have a special meaning else we can simply eliminate the column.
