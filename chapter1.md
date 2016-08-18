@@ -144,7 +144,7 @@ test_function("hist", args = "xlab",
 test_function("hist", args = "ylab",
               incorrect_msg = "You didn't call `hist(.., ylab =)` with the correct argument, `ylab`.")
 
-test_error()
+# test_error()
 
 success_msg("Good work!")
 ```
