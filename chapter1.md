@@ -119,7 +119,7 @@ hist(loan_data$age, main = "Distribution of Age", xlab = "Age", ylab = "Count")
 ```{r}
 # SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
 
-test_function("head", args = "...",
+test_function("head", args = "n",
               not_called_msg = "You didn't call `head()`!",
               incorrect_msg = "You didn't call `head(.., n = ...)` with the correct argument, `n`.")
               
