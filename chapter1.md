@@ -101,6 +101,7 @@ loan_data <- read.csv("http://assets.datacamp.com/production/1608/loan_data.csv"
 *** =solution
 ```{r}
 # loan_data is available in your workspace
+
 # Print the first 5 lines of loan_data to console
 head(loan_data, 5)
 
@@ -118,10 +119,6 @@ hist(loan_data$age, main = "Distribution of Age", xlab = "Age", ylab = "Count")
 ```{r}
 # SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
 
-test_function("str", args = "object",
-              not_called_msg = "You didn't call `str()`!",
-              incorrect_msg = "You didn't call `str(object = ...)` with the correct argument, `object`.")
-
 test_function("head", args = "n",
               not_called_msg = "You didn't call `head()`!",
               incorrect_msg = "You didn't call `head(.., n = ...)` with the correct argument, `n`.")
@@ -129,6 +126,10 @@ test_function("head", args = "n",
 test_function("tail", args = "n",
               not_called_msg = "You didn't call `tail()`!",
               incorrect_msg = "You didn't call `tail(.., n = ...)` with the correct argument, `n`.")
+              
+test_function("str", args = "object",
+              not_called_msg = "You didn't call `str()`!",
+              incorrect_msg = "You didn't call `str(object = ...)` with the correct argument, `object`.")
               
 test_function("hist", args = "x",
               not_called_msg = "You didn't call `hist()`!",
@@ -187,10 +188,11 @@ Look again at the `str()` of `load_data` which is available in your workspace. T
 Lets start getting our hands dirty and do some data cleaning!
 
 *** =instructions
+- Check out the `summary` of `loan_data`.
 - The first set of code is used to get the row number of the person with `age` = 144
 - The second set of code is used to get the row number of the millionaire. Run this code to see that both these values correspond to the same row or observation.
 - Remove this observation and store the cleaned data in `loan_data_1`.
-- Check out the `str()` of `loan_data_1`.
+- Now look at the `summary` of `loan_data_1`.
 
 *** =hint
 - Use `which()` to determine the row index.
@@ -206,6 +208,10 @@ loan_data <- read.csv("http://assets.datacamp.com/production/1608/loan_data.csv"
 *** =sample_code
 ```{r}
 # loan_data is available in your workspace
+
+# Look at the summary of loan_data
+
+
 # Obtain the row number of the person with age 144
 outlier_1 <- loan_data$age > 100
 which(outlier_1)
@@ -217,13 +223,17 @@ which(outlier_2)
 # Remove the outliers and save the data: loan_data_1
 loan_data_1 <- loan_data[-___(___), ]
 
-# Look at the structure of loan_data_1
+# Look at the summary of loan_data_1
 
 ```
 
 *** =solution
 ```{r}
 # loan_data is available in your workspace
+
+# Look at the summary of loan_data
+summary(loan_data)
+
 # Obtain the row number of the person with age 144
 outlier_1 <- loan_data$age > 100
 which(outlier_1)
@@ -235,8 +245,8 @@ which(outlier_2)
 # Remove the outliers and save the data: loan_data_1
 loan_data_1 <- loan_data[-which(outlier_1), ]
 
-# Look at the structure of loan_data_1
-str(loan_data_1)
+# Look at the summary of loan_data_1
+summary(loan_data_1)
 
 ```
 
@@ -244,10 +254,170 @@ str(loan_data_1)
 ```{r}
 # SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
 
-test_output_contains("str(loan_data_1)",
-                         incorrect_msg = "Have you correctly removed the outlier using [-which(outlier_1), ]?
+test_output_contains("summary(loan_data_1)",
+                         incorrect_msg = "Have you correctly removed the outlier using [-which(outlier_1), ]?")
 
 test_error()
 
-success_msg("Nice Job!")
+success_msg("Nice Job! Did you notice from the summary that we have couple more issues with data that need to be fixed? If not, again look carefully at the summary of loan_data_1")
 ```
+
+--- type:NormalExercise lang:r xp:100 skills:1 key:f220559b36
+## Data Cleaning (2)
+
+Data scientist spend around 3/4th of their time cleaning and tidying the data and spend the rest on analysis. This is an essential skill if you want to be a top Data scientist.
+
+If you observed the `summary` of the `loan_data_1` you would have noticed that there are two variables in our dataset that have NAs. These are `int_rate` and `emp_length`. We can get the percentage of NAs in our dataset using:
+
+`mean(is.na(column_name)) * 100`
+
+Depending on the percentage of NAs and other factors we can arrive at a decision on how to handle NAs. The percentage of NAs in `int_rate` is 9.54% which is considerably high. In this case, we can replace all the NAs in `int_rate` column with the median `int_rate`
+
+Lets do some more cleaning!
+
+*** =instructions
+- Look at the percentage NAs in `int_rate` column.
+- Calculate the median `int_rate` and save it in `med_ir`
+- Replace all NAs in `int_rate` column with `med_ir` and save it in a new data frame `loan_data_2`
+- Now look at the `summary` of `loan_data_2`.
+
+*** =hint
+- Use `median(.., na.rm = TRUE)` to determine the median `int_rate`.
+
+*** =pre_exercise_code
+```{r}
+# You can also prepare your dataset in a specific way in the pre exercise code
+
+loan_data_1
+```
+
+*** =sample_code
+```{r}
+# loan_data_1 is loaded in your workspace
+
+# What is the percentage of NAs in int_rate?
+
+
+# Row index of NAs in int_rate column
+na_index <- which(is.na(loan_data_1$int_rate))
+
+# Calculate the median int_rate
+med_ir <- 
+
+# Make a copy of loan_data_1
+loan_data_2 <- loan_data_1
+
+# Replace all NAs in int_rate column with med_ir: loan_data_2
+loan_data_2$int_rate[___] <- ____
+
+# Summary of loan_data_2
+
+```
+
+*** =solution
+```{r}
+# loan_data_1 is loaded in your workspace
+
+# What is the percentage of NAs in int_rate?
+mean(is.na(loan_data_1) * 100
+
+# Row index of NAs in int_rate column
+na_index <- which(is.na(loan_data_1$int_rate))
+
+# Calculate the median int_rate
+med_ir <- median(loan_data_1$int_rate, na.rm = TRUE)
+
+# Make a copy of loan_data_1
+loan_data_2 <- loan_data_1
+
+# Replace all NAs in int_rate column with med_ir: loan_data_2
+loan_data_2$int_rate[na_index] <- med_ir
+
+# Summary of loan_data_2
+summary(loan_data_2)
+```
+
+*** =sct
+```{r}
+# SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
+
+test_output_contains("summary(loan_data_2)",
+                         incorrect_msg = "Have you correctly replaced the NAs using [na_index]?")
+
+test_error()
+
+success_msg("Good Job! Next lets work on the NAs in the other column!")
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1 key:f220559b36
+## Data Cleaning (3)
+
+If the percentage of NAs in a column are very large then it is advisable to investigate further if NAs have a special meaning else we can simply eliminate the column.
+
+On the other hand if the percentage of NAs in a column are significantly low, we can look at means like previous exercise to replace the NAs if possible or eliminate entire rows in extreme cases.
+
+In the `emp_length` column the percentage of NAs is 2.78% of total observations. Lets go ahead with the decision to eliminate these from our dataframe
+
+*** =instructions
+- Look at the percentage NAs in `emp_length` column.
+- Remove all observations having NAs in `emp_length` column and save the clean dataset to `loan_data_3`.
+- Look at the `summary` of `loan_data_3`. 
+- Do you notice any more anomolies? If not, then lets finalize our data and save it for further analysis as `clean_data`.
+
+*** =hint
+- Use `loan_data_2` in `na.omit()` to eliminate all observations with NAs in the dataset.
+
+*** =pre_exercise_code
+```{r}
+# You can also prepare your dataset in a specific way in the pre exercise code
+
+loan_data_1
+loan_data_2
+```
+
+*** =sample_code
+```{r}
+# loan_data_1 and loan_data_2 are loaded in your workspace
+
+# What is the percentage of NAs in emp_length of loan_data_1?
+
+
+# Remove all NAs from the dataset loan_data_2 and save it in loan_data_3
+loan_data_3 <- na.omit(____)
+
+# Summary of loan_data_3
+
+
+# Save loan_data_3 to clean_data for further analysis
+clean_data <- ___
+````
+
+*** =solution
+```{r}
+# loan_data_1 and loan_data_2 are loaded in your workspace
+
+# What is the percentage of NAs in emp_length of loan_data_1?
+mean(is.na(loan_data_1$emp_length)) * 100
+
+# Remove all NAs from the dataset loan_data_2 and save it in loan_data_3
+loan_data_3 <- na.omit(loan_data_2)
+
+# Summary of loan_data_3
+summary(loan_data_3)
+
+# Save loan_data_3 to clean_data for further analysis
+clean_data <- loan_data_3
+````
+
+*** =sct
+```{r}
+# SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
+
+test_output_contains("summary(loan_data_3)",
+                         incorrect_msg = "Have you correctly removed all NAs using [na_index]?")
+
+test_error()
+
+success_msg("Awesome!")
+```
+
